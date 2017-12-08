@@ -56,6 +56,11 @@ router.post("/phones", (req, res, next) => {
 
 
 router.get("/phones/:id", (req, res, next) => {
+    if (req.user === undefined) {
+        res.status(400).json({ error: "Not logged in" });
+        return;
+    }
+
     Phone.findById(req.params.id)
       .then((phoneFromDb) => {
           // 404 if phone doesn't exist
@@ -79,6 +84,11 @@ router.get("/phones/:id", (req, res, next) => {
 
 
 router.delete("/phones/:id", (req, res, next) => {
+    if (req.user === undefined) {
+        res.status(400).json({ error: "Not logged in" });
+        return;
+    }
+
     Phone.findByIdAndRemove(req.params.id)
       .then((phoneFromDb) => {
           if (phoneFromDb === null) {
