@@ -24,7 +24,7 @@ app.use(
   cors({
     // accept cookies across domains
     credentials: true,
-    // ONLY allow these
+    // ONLY allow these domains to connect
     origin: [ 'http://localhost:4200' ]
   })
 );
